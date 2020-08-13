@@ -2,7 +2,7 @@
 spring:
   datasource:
     name: mydb  #数据库名
-    url: jdbc:mysql://localhost:3306/mydb #url
+    url: jdbc:mysql://47.110.139.34:3306/feng #url
     username: root  #用户名
     password: 991029.f  #密码
     driver-class-name: com.mysql.cj.jdbc.Driver  #数据库链接驱动
