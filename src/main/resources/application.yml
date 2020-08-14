@@ -19,3 +19,6 @@ spring:
 #模板配置
   thymeleaf:
     cache: false
+#指定端口号
+server:
+  port: 80
