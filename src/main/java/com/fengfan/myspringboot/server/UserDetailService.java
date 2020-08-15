@@ -10,46 +10,21 @@ import com.fengfan.myspringboot.pojo.UserDetail;
 import java.util.List;
 
 @Service
-public class UserDetailService {
+public interface UserDetailService {
+    public int deleteByPrimaryKey(Integer id);
 
-    @Resource
-    private UserDetailMapper userDetailMapper;
+    public int insert(UserDetail record);
 
+    public int insertSelective(UserDetail record);
 
-    public int deleteByPrimaryKey(Integer id) {
-        return userDetailMapper.deleteByPrimaryKey(id);
-    }
+    public UserDetail selectByPrimaryKey(Integer id);
 
+    public int updateByPrimaryKeySelective(UserDetail record);
 
-    public int insert(UserDetail record) {
-        return userDetailMapper.insert(record);
-    }
+    public int updateByPrimaryKey(UserDetail record);
 
+    public List<UserDetail> selectAll();
 
-    public int insertSelective(UserDetail record) {
-        return userDetailMapper.insertSelective(record);
-    }
+    public UserDetail selectByUserDetail(UserDetail user);
 
-
-    public UserDetail selectByPrimaryKey(Integer id) {
-        return userDetailMapper.selectByPrimaryKey(id);
-    }
-
-
-    public int updateByPrimaryKeySelective(UserDetail record) {
-        return userDetailMapper.updateByPrimaryKeySelective(record);
-    }
-
-
-    public int updateByPrimaryKey(UserDetail record) {
-        return userDetailMapper.updateByPrimaryKey(record);
-    }
-
-    public List<UserDetail> selectAll() {
-        return userDetailMapper.selectAll();
-    }
-
-    public UserDetail selectByUserDetail(UserDetail user) {
-        return userDetailMapper.selectByUserDetail(user);
-    }
 }

@@ -1,43 +1,24 @@
 package com.fengfan.myspringboot.server;
 
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
+
 import com.fengfan.myspringboot.dao.UserRoleMapper;
 import com.fengfan.myspringboot.pojo.UserRole;
+
 @Service
-public class UserRoleService{
+public interface UserRoleService {
+    public int deleteByPrimaryKey(Integer id);
 
-    @Resource
-    private UserRoleMapper userRoleMapper;
+    public int insert(UserRole record);
 
-    
-    public int deleteByPrimaryKey(Integer id) {
-        return userRoleMapper.deleteByPrimaryKey(id);
-    }
+    public int insertSelective(UserRole record);
 
-    
-    public int insert(UserRole record) {
-        return userRoleMapper.insert(record);
-    }
+    public UserRole selectByPrimaryKey(Integer id);
 
-    
-    public int insertSelective(UserRole record) {
-        return userRoleMapper.insertSelective(record);
-    }
+    public int updateByPrimaryKeySelective(UserRole record);
 
-    
-    public UserRole selectByPrimaryKey(Integer id) {
-        return userRoleMapper.selectByPrimaryKey(id);
-    }
-
-    
-    public int updateByPrimaryKeySelective(UserRole record) {
-        return userRoleMapper.updateByPrimaryKeySelective(record);
-    }
-
-    
-    public int updateByPrimaryKey(UserRole record) {
-        return userRoleMapper.updateByPrimaryKey(record);
-    }
+    public int updateByPrimaryKey(UserRole record);
 
 }
