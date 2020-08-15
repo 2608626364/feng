@@ -1,12 +1,18 @@
-package com.fengfan.myspringboot.mapper;
+package com.fengfan.myspringboot.dao;
 
-import com.fengfan.myspringboot.pojo.UserRole;
+import com.fengfan.myspringboot.pojo.UserDetail;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
-public interface UserRoleMapper {
+@Repository
+public interface UserDetailMapper {
     /**
      * delete by primary key
+     *
      * @param id primaryKey
      * @return deleteCount
      */
@@ -14,36 +20,51 @@ public interface UserRoleMapper {
 
     /**
      * insert record to table
+     *
      * @param record the record
      * @return insert count
      */
-    int insert(UserRole record);
+    int insert(UserDetail record);
 
     /**
      * insert record to table selective
+     *
      * @param record the record
      * @return insert count
      */
-    int insertSelective(UserRole record);
+    int insertSelective(UserDetail record);
 
     /**
      * select by primary key
+     *
      * @param id primary key
      * @return object by primary key
      */
-    UserRole selectByPrimaryKey(Integer id);
+    UserDetail selectByPrimaryKey(Integer id);
 
     /**
      * update record selective
+     *
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKeySelective(UserRole record);
+    int updateByPrimaryKeySelective(UserDetail record);
 
     /**
      * update record
+     *
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKey(UserRole record);
+    int updateByPrimaryKey(UserDetail record);
+
+    /**
+     * 查询所有用户
+     *
+     * @return
+     */
+    List<UserDetail> selectAll();
+
+    UserDetail selectByUserDetail(@Param("user")UserDetail user);
+
 }

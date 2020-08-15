@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-import com.fengfan.myspringboot.mapper.UserDetailMapper;
+import com.fengfan.myspringboot.dao.UserDetailMapper;
 import com.fengfan.myspringboot.pojo.UserDetail;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class UserDetailService {
         return userDetailMapper.updateByPrimaryKey(record);
     }
 
-    public List<UserDetail> selectAll(Integer id) {
+    public List<UserDetail> selectAll() {
         return userDetailMapper.selectAll();
     }
 
