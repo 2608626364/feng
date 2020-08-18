@@ -1,21 +1,18 @@
-/* new Vue({
-	el:'#test',
-	data:{
-		message :'我是测试asd使用'
-	}
-});
-
- */
-
 $(function() {
-	doindex();
+	// doindex();
 })
-
+/* 页面加载事件 */
 function doindex() {
 	$.post("/index", {
 		"userName": "小张",
 		"userNickname": "张总"
-	}, function(date) {
-		alert(date);
+	}, function(data) {
+		if (data == null || (data.msg == "" || data.msg == null)) {
+			
+		} else {
+			
+		}
+		console.log(data);
+
 	});
 }

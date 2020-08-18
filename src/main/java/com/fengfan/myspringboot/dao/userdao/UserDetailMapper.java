@@ -1,4 +1,4 @@
-package com.fengfan.myspringboot.dao;
+package com.fengfan.myspringboot.dao.userdao;
 
 import com.fengfan.myspringboot.pojo.UserDetail;
 import org.apache.ibatis.annotations.Mapper;

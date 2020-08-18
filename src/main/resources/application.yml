@@ -6,29 +6,40 @@ spring:
     username: root  #用户名
     password: 991029.f  #密码
     driver-class-name: com.mysql.cj.jdbc.Driver  #数据库链接驱动
-#security配置
+  #security配置
   security:
     user:
       name: fengfan
       password: 991029.f
-#mvc配置
+  #mvc配置
   mvc:
     static-path-pattern: /static/**
-#模板配置
+  #模板配置
   thymeleaf:
-    cache: false
-    prefix: classpath:/templates/
-    suffix: .html
+    cache: false #缓存是否开启
+    prefix: classpath:/templates/ #前缀
+    suffix: .html  #后缀
     servlet:
       content-type: text/html
     mode: Html5
+    encoding: utf-8 #编码格式
 #指定端口号
 server:
   port: 80
-  #指定mapper扫描
+
 #  servlet:
 #    context-path: /myapp
+#指定mapper扫描
 mybatis:
-  mapper-locations: classpath:/mapper/*.xml
-  type-aliases-package: com.fengfan.myspringboot.dao
+  mapper-locations: classpath:/mapper/**/*.xml #mapper文件放置位置
+  type-aliases-package: com.fengfan.myspringboot.pojo #实体类别名
+  configuration:
+#    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl #只打印语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印语句条件及结果集
+#logging:
+#  level:
+#    root: error
+#  file:
+#    path: D:/Log/
+logging.level.com: debug
 

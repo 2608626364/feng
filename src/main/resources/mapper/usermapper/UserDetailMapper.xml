@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fengfan.myspringboot.dao.UserDetailMapper">
+<mapper namespace="com.fengfan.myspringboot.dao.userdao.UserDetailMapper">
     <resultMap id="BaseResultMap" type="com.fengfan.myspringboot.pojo.UserDetail">
         <!--@mbg.generated-->
         <!--@Table feng.user_detail-->
@@ -96,7 +96,7 @@
         </set>
     where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.fengfan.myspringboot.pojo.UserDetail">
+    <update id="updateByPrimaryKey" parameterType="com.fengfan.myspringboot.pojo.UserDetail" >
         <!--@mbg.generated-->
     update feng.user_detail
     set user_name = #{userName,jdbcType=VARCHAR},
@@ -108,14 +108,14 @@
 
     </update>
 
-    <select id="selectAll" resultType="com.fengfan.myspringboot.pojo.UserDetail">
+    <select id="selectAll" resultMap="BaseResultMap">
         <!--@mbg.generated-->
     select
         <include refid="Base_Column_List"/>
     from feng.user_detail
 
     </select>
-    <select id="selectByUserDetail" parameterType="com.fengfan.myspringboot.pojo.UserDetail" resultType="com.fengfan.myspringboot.pojo.UserDetail">
+    <select id="selectByUserDetail" parameterType="com.fengfan.myspringboot.pojo.UserDetail" resultMap="BaseResultMap">
         <!--@mbg.generated-->
     select
         <include refid="Base_Column_List"/>

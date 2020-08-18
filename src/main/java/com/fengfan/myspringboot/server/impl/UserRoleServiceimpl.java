@@ -1,11 +1,12 @@
 package com.fengfan.myspringboot.server.impl;
 
-import com.fengfan.myspringboot.dao.UserRoleMapper;
+import com.fengfan.myspringboot.dao.userdao.UserRoleMapper;
 import com.fengfan.myspringboot.pojo.UserRole;
 import com.fengfan.myspringboot.server.UserRoleService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-
+@Service
 public class UserRoleServiceimpl implements UserRoleService {
     @Resource
     private UserRoleMapper userRoleMapper;

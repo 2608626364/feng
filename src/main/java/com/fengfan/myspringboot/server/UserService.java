@@ -1,6 +1,6 @@
 package com.fengfan.myspringboot.server;
 
-import com.fengfan.myspringboot.dao.UserDetailMapper;
+import com.fengfan.myspringboot.dao.userdao.UserDetailMapper;
 import com.fengfan.myspringboot.pojo.UserDetail;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

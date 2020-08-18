@@ -3,15 +3,15 @@ package com.fengfan.myspringboot.controller;
 import com.fengfan.myspringboot.pojo.UserDetail;
 import com.fengfan.myspringboot.server.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -21,19 +21,23 @@ public class usercontroller {
     @RequestMapping("")
     public ModelAndView defaultindex() {
         System.out.println("首页进入...");
+        List<UserDetail> list = detailService.selectAll();
         ModelAndView view = new ModelAndView("index");
+        view.addObject("list",list);
         return view;
     }
     @PostMapping("/index")
     @ResponseBody
-    public ModelAndView index(UserDetail user) {
+    public Map index(UserDetail user) {
         System.out.println("js加载...");
-        System.out.println(user);
         List<UserDetail> list = detailService.selectAll();
         ModelAndView view = new ModelAndView("index");
         view.addObject("list",list);
-        System.out.println(view);
-        return view;
+        Map<String,Object> map=new HashMap<>();
+        map.put("msg","ok");
+        map.put("list",list);
+        System.out.println(map);
+        return map;
     }
     @RequestMapping("testerror")
     public ModelAndView hello() throws Exception {
