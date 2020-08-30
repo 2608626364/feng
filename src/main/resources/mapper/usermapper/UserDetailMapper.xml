@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fengfan.myspringboot.dao.userdao.UserDetailMapper">
-    <resultMap id="BaseResultMap" type="com.fengfan.myspringboot.pojo.UserDetail">
+<mapper namespace="com.fengfan.user.dao.UserDetailMapper">
+    <resultMap id="BaseResultMap" type="com.fengfan.user.pojo.UserDetail">
         <!--@mbg.generated-->
         <!--@Table feng.user_detail-->
         <id column="id" jdbcType="INTEGER" property="id"/>
@@ -27,7 +27,7 @@
     delete from feng.user_detail
     where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fengfan.myspringboot.pojo.UserDetail"
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fengfan.user.pojo.UserDetail"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
     insert into feng.user_detail (user_name, user_nickname, phone_number, 
@@ -36,7 +36,7 @@
       #{address,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id"
-            parameterType="com.fengfan.myspringboot.pojo.UserDetail" useGeneratedKeys="true">
+            parameterType="com.fengfan.user.pojo.UserDetail" useGeneratedKeys="true">
         <!--@mbg.generated-->
     insert into feng.user_detail
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -74,7 +74,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.fengfan.myspringboot.pojo.UserDetail">
+    <update id="updateByPrimaryKeySelective" parameterType="com.fengfan.user.pojo.UserDetail">
         <!--@mbg.generated-->
     update feng.user_detail
         <set>
@@ -96,7 +96,7 @@
         </set>
     where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.fengfan.myspringboot.pojo.UserDetail" >
+    <update id="updateByPrimaryKey" parameterType="com.fengfan.user.pojo.UserDetail" >
         <!--@mbg.generated-->
     update feng.user_detail
     set user_name = #{userName,jdbcType=VARCHAR},
@@ -115,7 +115,7 @@
     from feng.user_detail
 
     </select>
-    <select id="selectByUserDetail" parameterType="com.fengfan.myspringboot.pojo.UserDetail" resultMap="BaseResultMap">
+    <select id="selectByUserDetail" parameterType="com.fengfan.user.pojo.UserDetail" resultMap="BaseResultMap">
         <!--@mbg.generated-->
     select
         <include refid="Base_Column_List"/>
