@@ -6,6 +6,20 @@ spring:
     username: root  #用户名
     password: 991029.f  #密码
     driver-class-name: com.mysql.cj.jdbc.Driver  #数据库链接驱动
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      # 最小空闲连接数量
+      # minimum-idle: 10
+      # 空闲连接存活最大时间，默认600000（10分钟）
+      idle-timeout: 300000
+      # 连接池最大连接数，默认是10
+      maximum-pool-size: 20
+      # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
+      auto-commit: true
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      max-lifetime: 800000
+      # 数据库连接超时时间,默认30秒，即30000
+      connection-timeout: 30000
   #security配置
   security:
     user:
@@ -23,6 +37,9 @@ spring:
       content-type: text/html
     mode: Html5
     encoding: utf-8 #编码格式
+  # 打印sql
+  jpa:
+    show-sql: true
 #指定端口号
 server:
   port: 80
@@ -34,8 +51,8 @@ mybatis:
   mapper-locations: classpath:/mapper/**/*.xml #mapper文件放置位置
   type-aliases-package: com.fengfan.myspringboot.pojo #实体类别名
   configuration:
-#    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl #只打印语句
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印语句条件及结果集
+    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl #只打印语句
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印语句条件及结果集
 #logging:
 #  level:
 #    root: error

@@ -1,0 +1,17 @@
+.left{
+	width: 30%;
+	height: auto;
+	float: left;
+	margin: 0px 0px;
+	padding: 0px 10px;
+	border: #003EFF 1px solid;
+}
+
+	
+.left div{
+	width: auto;
+	height: auto;
+	background-color: #AAAAAA;
+	border: #AAAAAA 1px solid;
+	
+	}
