@@ -18,15 +18,18 @@
 			</div>
 			<!-- thymeleaf引入页面 -->
 			<div th:replace="/public/left :: left"></div>
-			<div>
+			<!-- <div>
 				<tbody>
 					<tr th:each="s:${list}">
 						<th th:text="${s.id}"></th>
 						<th th:text="${s.userName}"></th>
 					</tr>
 				</tbody>
+			</div> -->
+			<div class="ui-button">
+				<input type="file" id="imgfile1" onchange="uplodefile('imgfile1')" accept="image/*" multiple="multiple" />
 			</div>
-			<div class="input_1"><input type="text" value="请输入" /> </div>
+			<div><img id="ImgData" src="" /> </div>
 		</body>
 
 	</html>
