@@ -1,26 +1,5 @@
 $(function() {
 	// doindex();
-
-	$.ajax({
-		url: "/upload/Img",
-		type: 'post',
-		data: {
-
-		},
-		cache: false,
-		processData: false,
-		contentType: false,
-		success: function(json) {
-			if (json.success == "success") {
-				alert("上传成功");
-			} else {
-				alert("上传失败");
-			}
-		},
-		error: function() {
-
-		}
-	});
 })
 /* 页面加载事件 */
 function doindex() {
@@ -52,14 +31,12 @@ function uplodefile(file) {
 	$.ajax({
 		url: "/Img",
 		type: 'post',
-		data: {
-			"file": forData
-		},
+		data: forData,
 		cache: false, // 不缓存数据
 		processData: false, // 不处理数据
 		contentType: false, // 不设置内容类型
 		success: function(json) {
-			if (json.success == "success") {
+			if (json == "success") {
 				alert("上传成功");
 			} else {
 				alert("上传失败");

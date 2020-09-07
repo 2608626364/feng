@@ -40,6 +40,10 @@ spring:
   # 打印sql
   jpa:
     show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
 #指定端口号
 server:
   port: 80
