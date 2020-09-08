@@ -1,5 +1,6 @@
 $(function() {
 	// doindex();
+	$("#left").hide();
 })
 /* 页面加载事件 */
 function doindex() {
