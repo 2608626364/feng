@@ -1,16 +1,23 @@
 package com.fengfan.utils.upload;
 
+import com.fengfan.user.pojo.FilePojo;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import javax.xml.bind.DatatypeConverter;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Administrator
@@ -28,7 +35,7 @@ public class UploadUtils {
             File patchily = new File("");
             System.out.println("绝对路径:" + patchily.getAbsolutePath());
             System.out.println("绝对路径:" + patchily.getCanonicalPath());
-            System.out.println("路径:"+patchily.getPath());
+            System.out.println("路径:" + patchily.getPath());
 //            if (patchily.exists()) {
 //                patchily.mkdir();
 //            }
@@ -51,4 +58,35 @@ public class UploadUtils {
         }
         return "error";
     }
+
+    /**
+     * base64转图片
+     *
+     * @param imgStr base64码
+     */
+    @RequestMapping("/SaveImg")
+    @ResponseBody
+    public String SaveImg(@RequestBody List<FilePojo> list) {
+
+//        System.out.println(imgStr + "-------" + list + "------" + Arraylist);
+        /*
+        BufferedImage image = null;
+        byte[] imageByte = null;
+        try {
+            imageByte = DatatypeConverter.parseBase64Binary(imgStr);
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
+            image = ImageIO.read(new ByteArrayInputStream(imageByte));
+            bis.close();
+            File outputfile = new File("d:\\sealImg.jpg");
+            ImageIO.write(image, "jpg", outputfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+
+        return "{\"name\":\"value\"}";
+
+    }
+
+
 }

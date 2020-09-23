@@ -22,9 +22,9 @@ public class usercontroller {
     @RequestMapping("")
     public ModelAndView defaultindex() {
         System.out.println("首页进入...");
-        List<UserDetail> list = detailService.selectAll();
+//        List<UserDetail> list = detailService.selectAll();
         ModelAndView view = new ModelAndView("index");
-        view.addObject("list", list);
+//        view.addObject("list", list);
         return view;
     }
 

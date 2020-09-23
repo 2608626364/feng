@@ -12,7 +12,7 @@
 		<script src="../static/js/userjs/user.js" type="text/javascript"></script>
 		<script src="../static/js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 		<body>
-			<input type="button" id="button1" class="buttonImg"/>
+			<input type="button" id="button1" class="buttonImg" />
 			<div id="left">
 				<div th:replace="/public/left :: left"></div>
 			</div>
@@ -30,7 +30,10 @@
 				</tbody>
 			</div> -->
 			<div class="ui-button">
-				<input type="file" id="imgfile1" onchange="uplodefile('imgfile1')" accept="image/*" multiple="multiple" />
+				图片1<input type="file" id="imgfile1" onchange="uplodefile('imgfile1')" accept="image/*" multiple="multiple" />
+				图片2<input type="file" id="imgfile2" accept="image/*" onchange="base64img('imgfile2')" src="../static/images/userimg/19.jpg" />
+				图片3<input type="file" id="imgfile3" accept="image/*" onchange="base64img('imgfile3')" src="../static/images/userimg/19.jpg" />
+				<a href="#" onclick="onSaveimg()">上传图片</a>
 			</div>
 			<div><img id="ImgData" src="" /> </div>
 		</body>
