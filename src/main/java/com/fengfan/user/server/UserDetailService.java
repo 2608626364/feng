@@ -1,25 +1,30 @@
 package com.fengfan.user.server;
 
 import com.fengfan.user.pojo.UserDetail;
+public interface UserDetailService{
 
-import java.util.List;
 
+    int deleteByPrimaryKey(Integer id);
 
-public interface UserDetailService {
-    public int deleteByPrimaryKey(Integer id);
+    int insert(UserDetail record);
 
-    public int insert(UserDetail record);
+    int insertSelective(UserDetail record);
 
-    public int insertSelective(UserDetail record);
+    UserDetail selectByPrimaryKey(Integer id);
 
-    public UserDetail selectByPrimaryKey(Integer id);
+    int updateByPrimaryKeySelective(UserDetail record);
 
-    public int updateByPrimaryKeySelective(UserDetail record);
-
-    public int updateByPrimaryKey(UserDetail record);
-
-    public List<UserDetail> selectAll();
-
-    public UserDetail selectByUserDetail(UserDetail user);
-
+    int updateByPrimaryKey(UserDetail record);
+    /**
+     * 根据user对象查找
+     * @param user primary user
+     * @return object by primary key
+     */
+    UserDetail selectByPrimaryKeySelective(UserDetail user);
+    /**
+     * 根据用户名查找
+     * @param userName
+     * @return object by primary key
+     */
+    UserDetail selectByUserName(String userName );
 }

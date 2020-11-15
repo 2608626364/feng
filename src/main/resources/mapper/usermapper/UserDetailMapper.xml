@@ -1,144 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fengfan.user.dao.UserDetailMapper">
-    <resultMap id="BaseResultMap" type="com.fengfan.user.pojo.UserDetail">
-        <!--@mbg.generated-->
-        <!--@Table feng.user_detail-->
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
-        <result column="user_nickname" jdbcType="VARCHAR" property="userNickname"/>
-        <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber"/>
-        <result column="address" jdbcType="VARCHAR" property="address"/>
-        <result column="role" jdbcType="INTEGER" property="role"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-        <!--@mbg.generated-->
-        id, user_name, user_nickname, phone_number, address, `role`
-    </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        <!--@mbg.generated-->
-    select
-        <include refid="Base_Column_List"/>
+  <resultMap id="BaseResultMap" type="com.fengfan.user.pojo.UserDetail">
+    <!--@mbg.generated-->
+    <!--@Table feng.user_detail-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="role" jdbcType="INTEGER" property="role" />
+    <result column="user_registertime" jdbcType="TIMESTAMP" property="userRegistertime" />
+    <result column="user_updatetime" jdbcType="TIMESTAMP" property="userUpdatetime" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_name, user_nickname, phone_number, address, `role`, user_registertime, user_updatetime,
+    `password`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
     from feng.user_detail
     where id = #{id,jdbcType=INTEGER}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        <!--@mbg.generated-->
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
     delete from feng.user_detail
     where id = #{id,jdbcType=INTEGER}
-    </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fengfan.user.pojo.UserDetail"
-            useGeneratedKeys="true">
-        <!--@mbg.generated-->
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fengfan.user.pojo.UserDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
     insert into feng.user_detail (user_name, user_nickname, phone_number, 
-      address, `role`)
+      address, `role`, user_registertime, 
+      user_updatetime, `password`)
     values (#{userName,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER})
-    </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id"
-            parameterType="com.fengfan.user.pojo.UserDetail" useGeneratedKeys="true">
-        <!--@mbg.generated-->
+      #{address,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{userRegistertime,jdbcType=TIMESTAMP}, 
+      #{userUpdatetime,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fengfan.user.pojo.UserDetail" useGeneratedKeys="true">
+    <!--@mbg.generated-->
     insert into feng.user_detail
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="userName != null">
-                user_name,
-            </if>
-            <if test="userNickname != null">
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userNickname != null">
         user_nickname,
-            </if>
-            <if test="phoneNumber != null">
+      </if>
+      <if test="phoneNumber != null">
         phone_number,
-            </if>
-            <if test="address != null">
+      </if>
+      <if test="address != null">
         address,
-            </if>
-            <if test="role != null">
+      </if>
+      <if test="role != null">
         `role`,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="userName != null">
-                #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="userNickname != null">
+      </if>
+      <if test="userRegistertime != null">
+        user_registertime,
+      </if>
+      <if test="userUpdatetime != null">
+        user_updatetime,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
         #{userNickname,jdbcType=VARCHAR},
-            </if>
-            <if test="phoneNumber != null">
+      </if>
+      <if test="phoneNumber != null">
         #{phoneNumber,jdbcType=VARCHAR},
-            </if>
-            <if test="address != null">
+      </if>
+      <if test="address != null">
         #{address,jdbcType=VARCHAR},
-            </if>
-            <if test="role != null">
+      </if>
+      <if test="role != null">
         #{role,jdbcType=INTEGER},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.fengfan.user.pojo.UserDetail">
-        <!--@mbg.generated-->
+      </if>
+      <if test="userRegistertime != null">
+        #{userRegistertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userUpdatetime != null">
+        #{userUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fengfan.user.pojo.UserDetail">
+    <!--@mbg.generated-->
     update feng.user_detail
-        <set>
-            <if test="userName != null">
-                user_name = #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="userNickname != null">
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
         user_nickname = #{userNickname,jdbcType=VARCHAR},
-            </if>
-            <if test="phoneNumber != null">
+      </if>
+      <if test="phoneNumber != null">
         phone_number = #{phoneNumber,jdbcType=VARCHAR},
-            </if>
-            <if test="address != null">
+      </if>
+      <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
-            </if>
-            <if test="role != null">
+      </if>
+      <if test="role != null">
         `role` = #{role,jdbcType=INTEGER},
-            </if>
-        </set>
+      </if>
+      <if test="userRegistertime != null">
+        user_registertime = #{userRegistertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userUpdatetime != null">
+        user_updatetime = #{userUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
     where id = #{id,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.fengfan.user.pojo.UserDetail" >
-        <!--@mbg.generated-->
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fengfan.user.pojo.UserDetail">
+    <!--@mbg.generated-->
     update feng.user_detail
     set user_name = #{userName,jdbcType=VARCHAR},
       user_nickname = #{userNickname,jdbcType=VARCHAR},
       phone_number = #{phoneNumber,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      `role` = #{role,jdbcType=INTEGER}
+      `role` = #{role,jdbcType=INTEGER},
+      user_registertime = #{userRegistertime,jdbcType=TIMESTAMP},
+      user_updatetime = #{userUpdatetime,jdbcType=TIMESTAMP},
+      `password` = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
+  </update>
 
-    </update>
 
-    <select id="selectAll" resultMap="BaseResultMap">
-        <!--@mbg.generated-->
+
+  <select id="selectByPrimaryKeySelective" parameterType="com.fengfan.user.pojo.UserDetail" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
     select
-        <include refid="Base_Column_List"/>
+    <include refid="Base_Column_List"/>
+
     from feng.user_detail
+    <where>
+      <if test="id != null">
+       and id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="userName != null">
+       and user_name = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="userNickname != null">
+       and user_nickname = #{userNickname,jdbcType=VARCHAR}
+      </if>
+      <if test="phoneNumber != null">
+       and phone_number = #{phoneNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="address != null">
+       and address = #{address,jdbcType=VARCHAR}
+      </if>
+      <if test="role != null">
+       and `role` = #{role,jdbcType=INTEGER}
+      </if>
+      <if test="userRegistertime != null">
+       and user_registertime = #{userRegistertime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userUpdatetime != null">
+       and user_updatetime = #{userUpdatetime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="password != null">
+       and `password` = #{password,jdbcType=VARCHAR}
+      </if>
+    </where>
 
-    </select>
-    <select id="selectByUserDetail" parameterType="com.fengfan.user.pojo.UserDetail" resultMap="BaseResultMap">
-        <!--@mbg.generated-->
+  </select>
+
+
+
+  <select id="selectByUserName" parameterType="string" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
     select
-        <include refid="Base_Column_List"/>
-      from feng.user_detail
-        <where>
-            <if test="user.id != null">
-              and  id = #{user.id,jdbcType=INTEGER}
-            </if>
-            <if test="user.userName != null and user.userName != ''">
-               and user_name = #{user.userName,jdbcType=VARCHAR}
-            </if>
-            <if test="user.userNickname">
-               and user_nickname = #{user.userNickname,jdbcType=VARCHAR}
-            </if>
-            <if test="user.phoneNumber != null and user.phoneNumber != ''">
-               and phone_number = #{user.phoneNumber,jdbcType=VARCHAR}
-            </if>
-            <if test="user.address != null and user.address != ''">
-               and address = #{user.address,jdbcType=VARCHAR}
-            </if>
-            <if test="user.role != null">
-               and role = #{user.role,jdbcType=INTEGER}
-            </if>
-        </where>
-    </select>
+    <include refid="Base_Column_List"/>
+
+    from feng.user_detail
+    <where>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </select>
 </mapper>

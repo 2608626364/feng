@@ -9,7 +9,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       # 最小空闲连接数量
-      # minimum-idle: 10
+       minimum-idle: 5
       # 空闲连接存活最大时间，默认600000（10分钟）
       idle-timeout: 300000
       # 连接池最大连接数，默认是10
@@ -19,7 +19,7 @@ spring:
       # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
       max-lifetime: 800000
       # 数据库连接超时时间,默认30秒，即30000
-      connection-timeout: 30000
+      connection-timeout: 60000
   #security配置
   security:
     user:
@@ -44,6 +44,17 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+  redis:
+    database: 0
+    host: 47.110.139.34
+    password: 991029.f
+    jedis:
+      pool:
+        max-active: 10
+        max-wait: -1
+        max-idle: 10
+        min-idle: 0
+    timeout: 6000
 #指定端口号
 server:
   port: 80

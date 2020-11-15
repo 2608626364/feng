@@ -2,10 +2,8 @@ package com.fengfan.user.dao;
 
 import com.fengfan.user.pojo.UserRole;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 @Mapper
-@Repository
 public interface UserRoleMapper {
     /**
      * delete by primary key

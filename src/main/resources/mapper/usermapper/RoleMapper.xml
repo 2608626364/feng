@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fengfan.user.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.fengfan.user.pojo.Role">
+    <!--@mbg.generated-->
+    <!--@Table feng.`role`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="role" jdbcType="INTEGER" property="role" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `role`, `desc`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from feng.`role`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from feng.`role`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fengfan.user.pojo.Role" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into feng.`role` (`role`, `desc`)
+    values (#{role,jdbcType=INTEGER}, #{desc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fengfan.user.pojo.Role" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into feng.`role`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="role != null">
+        `role`,
+      </if>
+      <if test="desc != null">
+        `desc`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="role != null">
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fengfan.user.pojo.Role">
+    <!--@mbg.generated-->
+    update feng.`role`
+    <set>
+      <if test="role != null">
+        `role` = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null">
+        `desc` = #{desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fengfan.user.pojo.Role">
+    <!--@mbg.generated-->
+    update feng.`role`
+    set `role` = #{role,jdbcType=INTEGER},
+      `desc` = #{desc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

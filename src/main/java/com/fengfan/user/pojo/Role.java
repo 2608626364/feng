@@ -5,24 +5,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+    * 用户权限表
+    */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRole implements Serializable {
-    /**
-    * 主键id
-    */
+public class Role implements Serializable {
     private Integer id;
-
-    /**
-    * 用户id
-    */
-    private Integer uid;
 
     /**
     * 权限id
     */
-    private Integer rid;
+    private Integer role;
+
+    /**
+    * 权限解释
+    */
+    private String desc;
 
     private static final long serialVersionUID = 1L;
 }
