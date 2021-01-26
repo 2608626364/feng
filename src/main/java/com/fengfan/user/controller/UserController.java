@@ -93,7 +93,8 @@ public class UserController {
             if (null != userDetail) {
                 if (md5.checkPassword(user.getPassword(), userDetail.getPassword())) {
                     String uuid = UUID.randomUUID().toString();
-                    redisTemplate.opsForValue().set(uuid, user, 5L, TimeUnit.MINUTES);
+                    log.info(userDetail);
+                    redisTemplate.opsForValue().set(uuid, userDetail, 500L, TimeUnit.MINUTES);
                     map.put("msg", "登录成功!");
                     map.put("key", uuid);
                 } else {
@@ -106,6 +107,9 @@ public class UserController {
             }
         }
         return map;
+
+
+        
     }
 
 
