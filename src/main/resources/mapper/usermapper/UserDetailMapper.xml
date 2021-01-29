@@ -13,12 +13,88 @@
     <result column="user_registertime" jdbcType="TIMESTAMP" property="userRegistertime" />
     <result column="user_updatetime" jdbcType="TIMESTAMP" property="userUpdatetime" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="disable" jdbcType="VARCHAR" property="disable" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, user_name, user_nickname, phone_number, address, `role`, user_registertime, user_updatetime,
-    `password`
+    id, user_name, user_nickname, phone_number, address, `role`, user_registertime, user_updatetime, 
+    `password`, `disable`
   </sql>
+  <select id="selectByExample" parameterType="com.fengfan.user.pojo.UserDetailExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from feng.user_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
@@ -31,14 +107,23 @@
     delete from feng.user_detail
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByExample" parameterType="com.fengfan.user.pojo.UserDetailExample">
+    <!--@mbg.generated-->
+    delete from feng.user_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fengfan.user.pojo.UserDetail" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into feng.user_detail (user_name, user_nickname, phone_number, 
       address, `role`, user_registertime, 
-      user_updatetime, `password`)
+      user_updatetime, `password`, `disable`
+      )
     values (#{userName,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{userRegistertime,jdbcType=TIMESTAMP}, 
-      #{userUpdatetime,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR})
+      #{userUpdatetime,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR}, #{disable,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fengfan.user.pojo.UserDetail" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -68,6 +153,9 @@
       <if test="password != null">
         `password`,
       </if>
+      <if test="disable != null">
+        `disable`,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userName != null">
@@ -94,8 +182,74 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
+      <if test="disable != null">
+        #{disable,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.fengfan.user.pojo.UserDetailExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from feng.user_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update feng.user_detail
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userNickname != null">
+        user_nickname = #{record.userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneNumber != null">
+        phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.role != null">
+        `role` = #{record.role,jdbcType=INTEGER},
+      </if>
+      <if test="record.userRegistertime != null">
+        user_registertime = #{record.userRegistertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userUpdatetime != null">
+        user_updatetime = #{record.userUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.password != null">
+        `password` = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.disable != null">
+        `disable` = #{record.disable,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update feng.user_detail
+    set id = #{record.id,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      user_nickname = #{record.userNickname,jdbcType=VARCHAR},
+      phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      `role` = #{record.role,jdbcType=INTEGER},
+      user_registertime = #{record.userRegistertime,jdbcType=TIMESTAMP},
+      user_updatetime = #{record.userUpdatetime,jdbcType=TIMESTAMP},
+      `password` = #{record.password,jdbcType=VARCHAR},
+      `disable` = #{record.disable,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.fengfan.user.pojo.UserDetail">
     <!--@mbg.generated-->
     update feng.user_detail
@@ -124,6 +278,9 @@
       <if test="password != null">
         `password` = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="disable != null">
+        `disable` = #{disable,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -137,63 +294,8 @@
       `role` = #{role,jdbcType=INTEGER},
       user_registertime = #{userRegistertime,jdbcType=TIMESTAMP},
       user_updatetime = #{userUpdatetime,jdbcType=TIMESTAMP},
-      `password` = #{password,jdbcType=VARCHAR}
+      `password` = #{password,jdbcType=VARCHAR},
+      `disable` = #{disable,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
-
-
-  <select id="selectByPrimaryKeySelective" parameterType="com.fengfan.user.pojo.UserDetail" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select
-    <include refid="Base_Column_List"/>
-
-    from feng.user_detail
-    <where>
-      <if test="id != null">
-       and id = #{id,jdbcType=INTEGER}
-      </if>
-      <if test="userName != null">
-       and user_name = #{userName,jdbcType=VARCHAR}
-      </if>
-      <if test="userNickname != null">
-       and user_nickname = #{userNickname,jdbcType=VARCHAR}
-      </if>
-      <if test="phoneNumber != null">
-       and phone_number = #{phoneNumber,jdbcType=VARCHAR}
-      </if>
-      <if test="address != null">
-       and address = #{address,jdbcType=VARCHAR}
-      </if>
-      <if test="role != null">
-       and `role` = #{role,jdbcType=INTEGER}
-      </if>
-      <if test="userRegistertime != null">
-       and user_registertime = #{userRegistertime,jdbcType=TIMESTAMP}
-      </if>
-      <if test="userUpdatetime != null">
-       and user_updatetime = #{userUpdatetime,jdbcType=TIMESTAMP}
-      </if>
-      <if test="password != null">
-       and `password` = #{password,jdbcType=VARCHAR}
-      </if>
-    </where>
-
-  </select>
-
-
-
-  <select id="selectByUserName" parameterType="string" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select
-    <include refid="Base_Column_List"/>
-
-    from feng.user_detail
-    <where>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR}
-      </if>
-    </where>
-
-  </select>
 </mapper>

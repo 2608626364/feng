@@ -21,8 +21,11 @@ function doindex() {
 function uplodefile(file) {
 
 	$("#ImgData").attr("src", getObjectURL($("#" + file)[0].files[0]));
+	alert(getObjectURL($("#" + file)[0].files[0]));
 	var forData = new FormData();
-	forData.append("file", $("#" + file)[0].files[0]);
+	forData.append("file", $("#" + file)[0].files[0], "文件1");
+	forData.append("file", $("#" + file)[0].files[0], "文件2");
+	forData.append("file", $("#" + file)[0].files[0], "文件3");
 	console.log(forData);
 	/* $.post("/upload/Img", {
 		"file": forData
@@ -81,21 +84,21 @@ function onSaveimg() {
 	}, function(data) {
 		console.log(data);
 	}); */
-		$.ajax({
-			url: '/SaveImg',
-			type: 'POST',
-			data: {
-				list: JSON.stringify(jsonlist)
-			},
-			dataType: 'json',
-			contentType: 'application/json;charset=utf-8',
-			success: function(data) {
-				console.log(data);
-			},
-			error: function(data) {
-				console.log(data);
-			}
-		});
+	$.ajax({
+		url: '/SaveImg',
+		type: 'POST',
+		data: {
+			list: JSON.stringify(jsonlist)
+		},
+		dataType: 'json',
+		contentType: 'application/json;charset=utf-8',
+		success: function(data) {
+			console.log(data);
+		},
+		error: function(data) {
+			console.log(data);
+		}
+	});
 }
 
 /* 转化图片并保存 */
