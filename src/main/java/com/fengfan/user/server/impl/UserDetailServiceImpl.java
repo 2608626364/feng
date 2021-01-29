@@ -1,6 +1,7 @@
 package com.fengfan.user.server.impl;
 
 import com.fengfan.user.server.UserDetailService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -68,4 +69,20 @@ public class UserDetailServiceImpl implements UserDetailService {
         return userDetailMapper.selectByUserName(userName);
     }
 
+    @Override
+    public boolean checkUser(UserDetail user) {
+        if (StringUtils.isBlank(user.getUserName())) {
+            return false;
+        }
+        if (StringUtils.isBlank(user.getPassword())) {
+            return false;
+        }
+        if (StringUtils.isBlank(user.getPhoneNumber())) {
+            return false;
+        }
+        if (StringUtils.isBlank(user.getUserNickname())) {
+            return false;
+        }
+        return true;
+    }
 }

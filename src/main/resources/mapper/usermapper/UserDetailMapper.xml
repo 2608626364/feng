@@ -80,21 +80,6 @@
     id, user_name, user_nickname, phone_number, address, `role`, user_registertime, user_updatetime, 
     `password`, `disable`
   </sql>
-  <select id="selectByExample" parameterType="com.fengfan.user.pojo.UserDetailExample" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from feng.user_detail
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
@@ -106,13 +91,6 @@
     <!--@mbg.generated-->
     delete from feng.user_detail
     where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.fengfan.user.pojo.UserDetailExample">
-    <!--@mbg.generated-->
-    delete from feng.user_detail
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fengfan.user.pojo.UserDetail" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -187,13 +165,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fengfan.user.pojo.UserDetailExample" resultType="java.lang.Long">
-    <!--@mbg.generated-->
-    select count(*) from feng.user_detail
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
   <update id="updateByExampleSelective" parameterType="map">
     <!--@mbg.generated-->
     update feng.user_detail

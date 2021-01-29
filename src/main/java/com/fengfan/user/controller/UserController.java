@@ -39,8 +39,9 @@ public class UserController {
     public Map index(UserDetail user) {
         System.out.println("js加载...");
         Map<String, Object> map = new HashMap<>(20);
+        UserDetail userDetail = userDetailService.selectByPrimaryKey(1);
         map.put("msg", "ok");
-        map.put("user", user);
+        map.put("user", userDetail);
         System.out.println(map);
         return map;
     }
