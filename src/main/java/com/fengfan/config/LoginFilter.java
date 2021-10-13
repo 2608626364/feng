@@ -20,7 +20,7 @@ import java.util.Map;
  * @Date: 2020/11/17 20:26
  */
 @Log4j2
-@WebFilter(filterName = "loginFiler", urlPatterns = "/*")
+@WebFilter(filterName = "loginFiler", urlPatterns = "/admin")
 public class LoginFilter implements Filter {
 
     @Resource
@@ -34,7 +34,7 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        log.info("Filter过滤之前");
+//        log.info("Filter过滤之前");
         HttpServletRequest req = (HttpServletRequest) request;
         BufferedReader reader = req.getReader();
        /* Map<String,Object> params = new HashMap<String, Object>();
@@ -52,16 +52,16 @@ public class LoginFilter implements Filter {
         } catch (IOException e1) {
             log.error(""+e1);
         }*/
-        log.info(reader);
+//        log.info(reader);
         String uri = req.getRequestURI();
         String userId = request.getParameter("user_id");
-        log.info(uri);
+//        log.info(uri);
         if (uri.indexOf("/login") != -1) {
             UserDetail user = (UserDetail) redisTemplate.opsForValue().get(userId);
             log.info(user);
         }
         chain.doFilter(request, response);
-        log.info("Filter过滤之后");
+//        log.info("Filter过滤之后");
     }
 
 

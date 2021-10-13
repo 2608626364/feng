@@ -1,15 +1,21 @@
 package com.fengfan.user.controller;
 
+import com.fengfan.mq.RabbitProducer;
 import com.fengfan.user.pojo.UserDetail;
 import com.fengfan.user.server.UserDetailService;
 import com.fengfan.user.utils.CheckMD5;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -108,10 +114,16 @@ public class UserController {
             }
         }
         return map;
-
-
-        
     }
 
+    @Autowired
+    private RabbitProducer rabbitProducer;
+
+    @RequestMapping("/sendDemoQueue/{msg}")
+    @ResponseBody
+    public Object sendDemoQueue(@Param("msg") String msg) {
+        rabbitProducer.sendDemoQueue(msg);
+        return "success";
+    }
 
 }

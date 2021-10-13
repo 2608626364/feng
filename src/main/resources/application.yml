@@ -75,3 +75,13 @@ mybatis:
 #    path: D:/Log/
 logging.level.com: debug
 
+# rabbitmq配置
+rabbitmq:
+  host: 10.121.219.149
+  port: 5672
+  username: guest
+  password: guest
+
+
+mq:
+  queueName=feng
